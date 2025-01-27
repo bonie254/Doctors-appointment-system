@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+{% block content %}
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Doctor Information</title>
+    <!--form css-->
+	<link rel="stylesheet" href="{{url_for('static', filename='css/doc_list.css')}}">
+</head>
+<body>
+
+  <section>
+    {% for doctor in doctors %}
+      <div class="doctor-card">
+        <div class="doctor-card-header">
+          <h2>Doctor {{ doctor.firstName }}</h2>
+          <h4>Clinic: {{ doctor.clinic_name }}</h4>
+        </div>
+        <div class="doctor-card-body">
+          <h3>Specialization: {{ doctor.specialization }}</h3>
+          <p><strong>Location:</strong> {{ doctor.clinic_address }}</p>
+          <p><strong>Licence number: </strong>{{ doctor.license_number }}</p>
+          <p><strong>Description: </strong>{{doctor.Short_description}} </p>
+          <h3><b>Services</b></h3>
+          <ol>
+            {% for service in doctor.services %}
+              <li>
+                <div class="ml-2">{{ service.service_name }}</div> 
+              </li>
+            {% endfor %}
+          </ol>
+          <a href="{{url_for('appointment_request', Doc_id = doctor.Doctor_id)}}"><button class="book-now-button">Book Now</button></a>
+        </div>
+      </div>
+    {% endfor %}
+
+  </section>
+
+</body>
+{% endblock %}

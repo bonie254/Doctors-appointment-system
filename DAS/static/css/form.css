@@ -1,0 +1,90 @@
+body {
+    background-color: #f4f7fa; /* Light blue background */
+    font-family: 'Arial', sans-serif;
+}
+
+.contain {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.content-section {
+    background-color: #ffffff; /* White background */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-control-label {
+    color: #3498db; /* Light blue text color */
+}
+
+.form-control {
+    border: 1px solid #3498db; /* Light blue border */
+    border-radius: 4px;
+}
+
+.btn-outline-info {
+    color: #3498db; /* Light blue text color */
+    border-color: #3498db; /* Light blue border color */
+}
+
+.btn-outline-info:hover {
+    background-color: #3498db; /* Light blue background on hover */
+    color: #ffffff; /* White text color on hover */
+}
+
+.border-top {
+    margin-top: 20px;
+    padding-top: 10px;
+    border-top: 1px solid #3498db; /* Light blue border on top */
+}
+
+.text-muted a {
+    color: #3498db; /* Light blue link color */
+}
+
+.text-muted a:hover {
+    text-decoration: underline;
+}
+
+/* ... (previous CSS styles) */
+
+.btn-outline-info {
+    color: #ffffff; /* White text color */
+    background-color: #3498db; /* Light blue background color */
+    border: 1px solid #3498db; /* Light blue border color */
+    border-radius: 4px;
+    padding: 10px 20px; /* Adjust padding as needed */
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-outline-info:hover {
+    background-color: #2980b9; /* Slightly darker blue on hover */
+    border-color: #2980b9; /* Slightly darker border on hover */
+}
+.form-group {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.form-control-label {
+    color: #3498db; /* Light blue text color */
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-control {
+    border: 1px solid #3498db; /* Light blue border */
+    border-radius: 4px;
+    padding: 8px; /* Adjust padding as needed */
+    width: 100%;
+}
+/* ... (remaining CSS styles) */

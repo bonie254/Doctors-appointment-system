@@ -1,0 +1,97 @@
+{% extends 'layout.html' %}
+{% block content %}
+<head>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/account.css')}}">
+    <title>Patient's Appointment Account</title>
+</head>
+
+    <div class="contain">
+        <div class="sidebar">
+            <h2>Account</h2>
+            <ul>
+                <li><a href="{{url_for('account')}}">Appointments</a></li>
+                <!-- <li><a href="#account">Account</a></li> -->
+                {% if current_user.user_type == 'Doctor'%}
+                    <li><a href="{{url_for('doc_services')}}">your services</a></li>
+                    <li><a href="{{url_for('user_account')}}">Update Account</a></li>
+                {%else%}
+                    <li><a href="{{url_for('user_account')}}">Update account</a></li>
+                {%endif%}
+            </ul>
+        </div>
+
+        <div class="content">
+            {% if current_user.user_type == 'Doctor'%}
+                <h2 id="appointments">Appointments</h2>
+                <table>
+                    <tr>
+                        <th>Patient Name</th>
+                        <th>appointment_date</th>
+                        <th>appointment_time</th>
+                        <th>service</th>
+                        <th>Status</th>
+                    </tr>
+                    {% if appointments == []%}
+                        <tr>
+                            <td colspan="5">No appointments yet</td>
+                        </tr>
+                    {%endif%}
+                    {% for appointment in appointments %}
+                    <tr>
+                        <td>{{ appointment.client.firstName + " " + appointment.client.lastName }}</td>
+                        <td>{{ appointment.appointment_date }}</td>
+                        <td>{{ appointment.appointment_time }}</td>
+                        <td>{{ appointment.service }}</td>
+                        {% if appointment.status == 'Pending'%}
+                            <td class="pending">{{ appointment.status }}</td>
+                            <td class="approve_btn"><a href="{{url_for('appointment_status_approve', appointment_id = appointment.appointment_id)}}">Approve</a></td>
+                            <td class="reject_btn"><a href="{{url_for('appointment_status_reject', appointment_id = appointment.appointment_id)}}">Reject</a></td>
+                        {%elif appointment.status == 'Approved'%}
+                            <td class="approved">{{ appointment.status }}</td>
+                        {%elif appointment.status == 'Rejected'%}
+                            <td class="rejected">{{ appointment.status }}</td>
+                        {%else%}
+                            <td class="cancelled">{{ appointment.status }}</td>
+                        {%endif%}
+                    </tr>
+                    {% endfor %}
+                </table>
+            {%else%}
+                <h2 id="appointments">Appointments</h2>
+                <table>
+                    <tr>
+                        <th>Doctor Name</th>
+                        <th>appointment_date</th>
+                        <th>appointment_time</th>
+                        <th>service</th>
+                        <th>Status</th>
+                    </tr>
+                    {% if appointments == []%}
+                        <tr>
+                            <td colspan="5">No appointments yet</td>
+                        </tr>
+                    {%endif%}
+
+                    {% for appointment in appointments %}
+                    <tr>
+                        <td>{{ appointment.doctor.firstName + " " + appointment.doctor.lastName }}</td>
+                        <td>{{ appointment.appointment_date }}</td>
+                        <td>{{ appointment.appointment_time }}</td>
+                        <td>{{ appointment.service }}</td>
+                        {% if appointment.status == 'Pending'%}
+                            <td class="pending">{{ appointment.status }}</td>
+                            <td class="cancel_btn"><a href="{{url_for('cancel_appointment', appointment_id = appointment.appointment_id)}}">Cancel Appointment</a></td>
+                        {%elif appointment.status == 'Approved'%}
+                            <td class="approved">{{ appointment.status }}</td>
+                        {%elif appointment.status == 'Rejected'%}
+                            <td class="rejected">{{ appointment.status }}</td>
+                        {%else%}
+                            <td class="cancelled">{{ appointment.status }}</td>
+                        {%endif%}
+                    </tr>
+                    {% endfor %}
+                </table>
+            {%endif%}
+        </div>
+    </div>
+{% endblock %}

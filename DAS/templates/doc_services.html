@@ -1,0 +1,64 @@
+{% extends 'layout.html' %}
+{% block content %}
+<head>
+    <title>Doctor's Services</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/doc_services.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/account.css')}}">
+    <title>Appointment Account</title>
+</head>
+
+    <div class="contain">
+        <div class="sidebar">
+            <h2>Account</h2>
+            <ul>
+                <li><a href="{{url_for('account')}}">Appointments</a></li>
+                <!-- <li><a href="#account">Account</a></li> -->
+                {% if current_user.user_type == 'Doctor'%}
+                    <li><a href="{{url_for('doc_services')}}">your services</a></li>
+                    <li><a href="{{url_for('user_account')}}">Update Account</a></li>
+                {%else%}
+                    <li><a href="{{url_for('user_account')}}">Update account</a></li>
+                {%endif%}
+            </ul>
+        </div>
+
+        
+        <div class="content">
+            <div class="container">
+                <div class="header">
+                    <h1>Services You Offer</h1>
+                </div>
+
+                <div class="services-list">
+                    {% for service in services %}
+                        <div class="service-item">
+                            <h2>{{service.service_name}}</h2>
+                            <!-- <p>{{service.service_description}}</p> -->
+                        </div>
+                    {% endfor %}
+                    <!-- <div class="service-item">
+                        <h2>General Checkup</h2>
+                        <p>Comprehensive examination to assess overall health.</p>
+                    </div>
+
+                    <div class="service-item">
+                        <h2>Specialized Consultation</h2>
+                        <p>Expert advice in specific medical fields.</p>
+                    </div>
+
+                    <div class="service-item">
+                        <h2>Diagnostic Tests</h2>
+                        <p>Conducting tests to diagnose and monitor conditions.</p>
+                    </div>
+                </div> -->
+            </div>
+            <div class="btn-outline-info">
+                <a href="{{url_for('service')}}" class="add-service">Add Service</a>
+            </div>
+        </div>
+
+</body>
+</html>
+
+
+{%endblock%}

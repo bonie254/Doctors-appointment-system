@@ -1,0 +1,105 @@
+{% extends 'layout.html' %}
+{% block content %}
+<head>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/account.css')}}">
+
+    <link rel="stylesheet" href="{{url_for('static', filename='css/user_account.css')}}">
+    <title>Patient's Appointment Account</title>
+</head>
+
+    <div class="contain">
+        <div class="sidebar">
+            <h2>Account</h2>
+            <ul>
+                <li><a href="{{url_for('account')}}">Appointments</a></li>
+                <!-- <li><a href="#account">Account</a></li> -->
+                {% if current_user.user_type == 'Doctor'%}
+                    <li><a href="{{url_for('doc_services')}}">your services</a></li>
+                    <li><a href="{{url_for('user_account')}}">Update Account</a></li>
+                {%else%}
+                    <li><a href="{{url_for('user_account')}}">Update Account</a></li>
+                {%endif%}
+            </ul>
+        </div>
+
+        <div class="content">
+            <div class="content-section">
+                <div class="media">
+                    <img class="rounded-circle account-img" src="{{ profile_pic }}">
+                    <div class="media-body">
+                        <h2 class="account-heading">{{current_user.username}}</h2>
+                        <p class="text-secondary">{{current_user.email}}</p>
+                    </div>
+                </div>
+                    <div class="content-section">
+                        <form method="POST" action="">
+                            {{ form.hidden_tag() }}
+                            <fieldset class="form-group">
+                                <legend class="border-bottom-mb-4">Update Account</legend>
+                                <div class="form-group">
+                                    {{ form.FirstName.label(class='form-control-label')}}
+                                    {% if form.FirstName.errors%}
+                                        {{ form.FirstName(class='form-control form-control-lg is-invalid') }}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.FirstName.errors%}
+                                                <span>
+                                                    {{ error }}
+                                                </span>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {{ form.FirstName(class='form-control form-control-lg', placeholder='first name') }}
+                                    {%endif%}
+                
+                                </div>
+                                    <div class="form-group">
+                                        {{ form.LastName.label(class='form-control-label')}}
+                                        {% if form.LastName.errors%}
+                                            {{ form.LastName(class='form-control form-control-lg is-invalid') }}
+                                            <div class="invalid-feedback">
+                                                {% for error in form.LastName.errors%}
+                                                    <span>
+                                                        {{ error }}
+                                                    </span>
+                                                {% endfor %}
+                                            </div>
+                                        {% else %}
+                                            {{ form.LastName(class='form-control form-control-lg', placeholder='Last name')}}
+                                        {% endif %}
+                                    </div>
+                                    <div class="form-group">
+                                        {{ form.email.label(class='form-control-label')}}
+                                        {% if form.email.errors%}
+                                            {{ form.email(class='form-control form-control-lg is-invalid') }}
+                                            <div class="invalid-feedback">
+                                                {% for error in form.email.errors%}
+                                                    <span>
+                                                        {{ error }}
+                                                    </span>
+                                                {% endfor %}
+                                            </div>
+                                        {% else %}
+                                            {{ form.email(class='form-control form-control-lg', placeholder='email')}}
+                                        {% endif %}
+                                    </div>
+                                    <div class="form-group">
+                                        {{ form.phone_number.label(class='form-control-label')}}
+                                        {% if form.phone_number.errors%}
+                                            {{ form.phone_number(class='form-control form-control-lg is-invalid') }}
+                                            <div class="invalid-feedback">
+                                                {% for error in form.phone_number.errors%}
+                                                    <span>
+                                                        {{ error }}
+                                                    </span>
+                                                {% endfor %}
+                                            </div>
+                                        {% else %}
+                                            {{ form.phone_number(class='form-control form-control-lg', placeholder='phone_number')}}
+                                        {% endif %}
+                                    </div>
+                                    <div class="form-group">
+                                        {{ form.submit(class="btn-outline-info") }}
+                                     </div>
+        </div>
+    </div>
+    {% endblock %}

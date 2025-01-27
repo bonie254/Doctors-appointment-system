@@ -1,0 +1,133 @@
+{% extends 'layout.html' %}
+{% block content %}
+<head>
+    <!--form css-->
+		<link rel="stylesheet" href="{{url_for('static', filename='css/form.css')}}">
+</head>
+<div class="contain">
+    <div class="content-section">
+        <form method="POST" action="">
+            {{ form.hidden_tag() }} 
+            <fieldset class="form-group">
+                <legend class="border-bottom-mb-4"> Join us</legend>
+                <div class="form-group">
+                    {{ form.FirstName.label(class='form-control-label')}}
+                    {% if form.FirstName.errors%}
+                        {{ form.FirstName(class='form-control form-control-lg is-invalid') }}
+                        <div class="invalid-feedback">
+                            {% for error in form.FirstName.errors%}
+                                <span>
+                                    {{ error }}
+                                </span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.FirstName(class='form-control form-control-lg', placeholder='first name') }}
+                    {%endif%}
+
+                </div>
+                <div class="form-group">
+                    {{ form.LastName.label(class='form-control-label')}}
+                    {% if form.LastName.errors%}
+                        {{ form.LastName(class='form-control form-control-lg is-invalid') }}
+                        <div class="invalid-feedback">
+                            {% for error in form.LastName.errors%}
+                                <span>
+                                    {{ error }}
+                                </span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.LastName(class='form-control form-control-lg', placeholder='Last name')}}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.email.label(class='form-control-label')}}
+                    {% if form.email.errors%}
+                        {{ form.email(class='form-control form-control-lg is-invalid') }}
+                        <div class="invalid-feedback">
+                            {% for error in form.email.errors%}
+                                <span>
+                                    {{ error }}
+                                </span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.email(class='form-control form-control-lg', placeholder='email')}}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.phone_number.label(class='form-control-label')}}
+                    {% if form.phone_number.errors%}
+                        {{ form.phone_number(class='form-control form-control-lg is-invalid') }}
+                        <div class="invalid-feedback">
+                            {% for error in form.phone_number.errors%}
+                                <span>
+                                    {{ error }}
+                                </span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.phone_number(class='form-control form-control-lg', placeholder='phone_number')}}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.user_type.label(class='form-control-label')}}
+                    {% if form.user_type.errors%}
+                        {{ form.user_type(class='form-control form-control-lg is-invalid') }}
+                        <div class="invalid-feedback">
+                            {% for error in form.user_type.errors%}
+                                <span>
+                                    {{ error }}
+                                </span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.user_type(class='form-control form-control-lg', placeholder='tell us who you are')}}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.password.label(class='form-control-label')}}
+                    {% if form.password.errors%}
+                        {{ form.password(class='form-control form-control-lg is-invalid') }}
+                        <div class="invalid-feedback">
+                            {% for error in form.password.errors%}
+                                <span>
+                                    {{ error }}
+                                </span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.password(type ='password', class='form-control form-control-lg', placeholder='password')}}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.confirm_password.label(class='form-control-label')}}
+                    {% if form.confirm_password.errors%}
+                        {{ form.confirm_password(class='form-control form-control-lg is-invalid') }}
+                        <div class="invalid-feedback">
+                            {% for error in form.confirm_password.errors%}
+                                <span>
+                                    {{ error }}
+                                </span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.confirm_password(type ='password', class='form-control form-control-lg', placeholder='confirm password')}}
+                    {% endif %}
+                </div>
+            </fieldset>
+            <div class="form-group">
+               {{ form.submit(class="btn-outline-info") }}
+            </div>
+        </form>
+    </div>
+    <div class="border-top pt-3">
+        <lgall class="text-muted">
+            Already have an account? 
+            <!-- here we are passing the name of the route function-->
+        </lgall>
+        <a class="ml-4" href="{{ url_for('login')}}"><b>Login</b></a> 
+    </div>
+</div>
+{% endblock %}

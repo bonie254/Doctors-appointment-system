@@ -1,0 +1,172 @@
+{% extends 'layout.html' %}
+{% block content %}
+<head>
+    <!--form css-->
+		<link rel="stylesheet" href="{{url_for('static', filename='css/form.css')}}">
+</head>
+<div class="contain">
+    <div class="content-section">
+        <form method="POST" action="">
+            {{ form.hidden_tag() }} 
+            <fieldset class="form-group">
+                <legend class="border-bottom-mb-4">update your info</legend>
+                <div class="form-group">
+                    {{ form.email.label(class='form-control-label')}}
+                    {% if form.email.errors %}
+                        {{ form.email(class='form-control form-control-sm is-invalid') }}
+                        <div class="invalid-feedback">
+                            {% for error in form.email.errors%}
+                                <span>
+                                    {{ error }}
+                                </span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.email(class='form-control form-control-sm', placeholder='must be same as registration email') }}
+                    {%endif%}
+                </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-6">
+                                {{ form.Qualification.label(class='form-control-label')}}
+                                {% if form.Qualification.errors %}
+                                    {{ form.Qualification(class='form-control form-control-sm is-invalid') }}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.Qualification.errors%}
+                                            <span>
+                                                {{ error }}
+                                            </span>
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    {{ form.Qualification(class='form-control form-control-sm', placeholder='Qualification') }}
+                                {%endif%}
+                            </div>
+                            <div class="col-6">
+                                {{ form.Specialisation.label(class='form-control-label')}}
+                                {% if form.Specialisation.errors %}
+                                    {{ form.Specialisation(class='form-control form-control-sm is-invalid') }}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.Specialisation.errors%}
+                                                <span>
+                                                    {{ error }}
+                                                </span>
+                                            {% endfor %}
+                                        </div>
+                                {% else %}
+                                    {{ form.Specialisation(class='form-control form-control-sm', placeholder='Specialisation') }}
+                                {%endif%}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{ form.license_number.label(class='form-control-label')}}
+                        {% if form.license_number.errors %}
+                            {{ form.license_number(class='form-control form-control-sm is-invalid') }}
+                            <div class="invalid-feedback">
+                                {% for error in form.license_number.errors%}
+                                    <span>
+                                        {{ error }}
+                                    </span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.license_number(class='form-control form-control-sm', placeholder='license number') }}
+                        {%endif%}
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-6">
+                                {{ form.clinic_name.label(class='form-control-label')}}
+                                {% if form.clinic_name.errors %}
+                                    {{ form.clinic_name(class='form-control form-control-sm is-invalid') }}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.clinic_name.errors%}
+                                                <span>
+                                                    {{ error }}
+                                                </span>
+                                            {% endfor %}
+                                        </div>
+                                {% else %}
+                                    {{ form.clinic_name(class='form-control form-control-sm', placeholder='Clinic Name') }}
+                                {% endif %}
+                            </div>
+                            <div class="col-6">
+                                {{ form.clinic_address.label(class='form-control-label')}}
+                                {% if form.clinic_address.errors %}
+                                    {{ form.clinic_address(class='form-control form-control-sm is-invalid') }}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.clinic_address.errors%}
+                                            <span>
+                                                {{ error }}
+                                            </span>
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    {{ form.clinic_address(class='form-control form-control-sm', placeholder='Clinic Address') }}
+                                {% endif %}
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-6">
+                                {{ form.working_hours.label(class='form-control-label')}}
+                                {% if form.working_hours.errors %}
+                                    {{ form.working_hours(class='form-control form-control-sm is-invalid') }}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.working_hours.errors%}
+                                            <span>
+                                                {{ error }}
+                                            </span>
+                                        {% endfor %}
+                                    </div>
+                                 {% else %}
+                                    {{ form.working_hours(class='form-control form-control-sm', placeholder='working hours') }}
+                                {%endif%}
+                            </div>
+                            <div class="col-6">
+                                {{ form.availability.label(class='form-control-label')}}
+                                {% if form.availability.errors %}
+                                    {{ form.availability(class='form-control form-control-sm is-invalid') }}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.availability.errors%}
+                                            <span>
+                                                {{ error }}
+                                            </span>
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    {{ form.availability(class='form-control form-control-sm', placeholder='availability') }}
+                                {%endif%}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{ form.Short_description.label(class='form-control-label')}}
+                        {% if form.Short_description.errors %}
+                            {{ form.Short_description(class='form-control form-control-sm is-invalid') }}
+                            <div class="invalid-feedback">
+                                {% for error in form.Short_description.errors%}
+                                    <span>
+                                        {{ error }}
+                                    </span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.Short_description(class='form-control form-control-sm', placeholder='describe yourself') }}
+                        {%endif%}
+                    </div>
+            </fieldset>
+            <div class="form-group">
+               {{ form.submit(class="btn-outline-info") }}
+            </div>
+        </form>
+    </div>
+    <div class="border-top pt-3">
+        <legend class="border-bottom-mb-4">Add your Qualification</legend>
+
+    </div>
+</div>
+{% endblock %}
